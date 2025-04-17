@@ -1,190 +1,184 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Time da Champions</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            padding: 20px;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Zoando os Amigos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #fceabb, #f8b500);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      color: #333;
+    }
 
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-        }
+    h1 {
+      color: #fff;
+      font-size: 32px;
+      margin-bottom: 30px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    }
 
-        .players-container, .team-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-        }
+    .amigo {
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      margin: 15px 0;
+      padding: 20px;
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+      transition: transform 0.2s;
+      cursor: pointer;
+    }
 
-        .player-card, .team-card {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 200px;
-            text-align: center;
-            cursor: pointer;
-        }
+    .amigo:hover {
+      transform: scale(1.03);
+      background-color: #ffe58f;
+    }
 
-        .player-card.selected {
-            border: 2px solid #007bff;
-        }
+    .amigo h2 {
+      margin: 0;
+      font-size: 22px;
+      color: #ff6600;
+    }
 
-        .team-card {
-            border: 1px solid #ddd;
-            margin-top: 10px;
-        }
+    .familiares {
+      display: none;
+      margin-top: 15px;
+      text-align: left;
+      padding: 15px;
+      border-top: 1px solid #ddd;
+      color: #444;
+    }
 
-        .team-card button {
-            background-color: #ff6347;
-            color: white;
-            padding: 5px 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .team-card button:hover {
-            background-color: #e53e34;
-        }
-
-        .btn {
-            background-color: #007bff;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 10px 0;
-        }
-
-        .btn:hover {
-            background-color: #0056b3;
-        }
-
-        .budget-info {
-            margin-bottom: 30px;
-            text-align: center;
-        }
-    </style>
+    .familiares p {
+      margin: 8px 0;
+    }
+  </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>Escale seu time da Champions</h1>
+  <h1>😎 Clique no nome do amigo pra ver os parentes secretos</h1>
 
-    <div class="budget-info">
-        <p>Orçamento: <span id="current-budget">100</span> CartoChampions</p>
-        <p>Orçamento restante: <span id="remaining-budget">100</span> CartoChampions</p>
+  <!-- Modelo de cartão de amigo -->
+  <div class="amigo" onclick="mostrar('benjamin')">
+    <h2>👤 Benjamin</h2>
+    <div id="benjamin" class="familiares">
+      <p><strong>Mãe:</strong> Ivonne</p>
+      <p><strong>Pai:</strong> Tsen</p>
+      <p><strong>Irmã:</strong> Emily</p>
     </div>
+  </div>
 
-    <div class="players-container">
-        <!-- Jogadores disponíveis serão adicionados aqui -->
+  <div class="amigo" onclick="mostrar('joao')">
+    <h2>👤 João</h2>
+    <div id="joao" class="familiares">
+      <p><strong>Mãe:</strong> Andreia</p>
+      <p><strong>Pai:</strong> Lucas</p>
     </div>
+  </div>
 
-    <div class="team-container">
-        <!-- O time selecionado será exibido aqui -->
+  <div class="amigo" onclick="mostrar('thiago')">
+    <h2>👤 Thiago</h2>
+    <div id="thiago" class="familiares">
+      <p><strong>Mãe:</strong> Josi</p>
+      <p><strong>Pai:</strong> Marcelão</p>
+      <p><strong>Prima:</strong> Maísa</p>
+      <p><strong>Vô:</strong> Vardão</p>
+      <p><strong>Tio:</strong> Douglas</p>
     </div>
-</div>
+  </div>
 
-<script>
-    // Dados dos jogadores fictícios
-    const players = [
-        { id: 1, name: "Jogador 1", position: "Goleiro", price: 10 },
-        { id: 2, name: "Jogador 2", position: "Zagueiro", price: 8 },
-        { id: 3, name: "Jogador 3", position: "Lateral", price: 7 },
-        { id: 4, name: "Jogador 4", position: "Meia", price: 9 },
-        { id: 5, name: "Jogador 5", position: "Atacante", price: 12 },
-        { id: 6, name: "Jogador 6", position: "Zagueiro", price: 6 },
-        { id: 7, name: "Jogador 7", position: "Lateral", price: 5 },
-        { id: 8, name: "Jogador 8", position: "Meia", price: 10 },
-        { id: 9, name: "Jogador 9", position: "Atacante", price: 11 }
-    ];
+  <div class="amigo" onclick="mostrar('botelho')">
+    <h2>👤 Botelho</h2>
+    <div id="botelho" class="familiares">
+      <p><strong>Mãe:</strong> Michelle</p>
+      <p><strong>Pai:</strong> Adriano</p>
+    </div>
+  </div>
 
-    let selectedPlayers = [];
-    const MAX_BUDGET = 100;
+  <div class="amigo" onclick="mostrar('pisin')">
+    <h2>👤 Pisin</h2>
+    <div id="pisin" class="familiares">
+      <p><strong>Mãe:</strong> Amanda</p>
+      <p><strong>Pai:</strong> Diego</p>
+      <p><strong>Vó:</strong> Rose</p>
+      <p><strong>Vô:</strong> Armindo</p>
+      <p><strong>Vó:</strong> Vera Lucia</p>
+      <p><strong>Irmãs:</strong> Annie e Izzie</p>
+    </div>
+  </div>
 
-    // Função para atualizar o orçamento restante
-    const updateBudget = () => {
-        const currentBudget = selectedPlayers.reduce((sum, player) => sum + player.price, 0);
-        const remainingBudget = MAX_BUDGET - currentBudget;
+  <div class="amigo" onclick="mostrar('tavares')">
+    <h2>👤 Tavares</h2>
+    <div id="tavares" class="familiares">
+      <p><strong>Pai:</strong> César</p>
+      <p><strong>Mãe:</strong> Liliane</p>
+      <p><strong>Vô:</strong> José</p>
+      <p><strong>Irmãos:</strong> Enzo e Pietro</p>
+      <p><strong>Tia:</strong> Fernanda</p>
+      <p><strong>Tia:</strong> Cyene</p>
+    </div>
+  </div>
 
-        document.getElementById("current-budget").textContent = currentBudget;
-        document.getElementById("remaining-budget").textContent = remainingBudget;
-    };
+  <div class="amigo" onclick="mostrar('vini')">
+    <h2>👤 Vini</h2>
+    <div id="vini" class="familiares">
+      <p><strong>Pai:</strong> Giuliano</p>
+      <p><strong>Mãe:</strong> Andréia</p>
+      <p><strong>Irmã:</strong> Giulia</p>
+    </div>
+  </div>
 
-    // Função para adicionar jogador ao time
-    const addPlayerToTeam = (player) => {
-        const currentBudget = selectedPlayers.reduce((sum, p) => sum + p.price, 0);
-        const remainingBudget = MAX_BUDGET - currentBudget;
+  <div class="amigo" onclick="mostrar('enzo')">
+    <h2>👤 Enzo</h2>
+    <div id="enzo" class="familiares">
+      <p><strong>Mãe:</strong> Liliane</p>
+      <p><strong>Vó:</strong> Dineusa</p>
+    </div>
+  </div>
 
-        if (remainingBudget >= player.price) {
-            selectedPlayers.push(player);
-            renderTeam();
-            updateBudget();
-        } else {
-            alert("Orçamento insuficiente!");
-        }
-    };
+  <div class="amigo" onclick="mostrar('murilo')">
+    <h2>👤 Murilo</h2>
+    <div id="murilo" class="familiares">
+      <p><strong>Mãe:</strong> Viviane</p>
+      <p><strong>Pai:</strong> Gilmar</p>
+    </div>
+  </div>
 
-    // Função para renderizar os jogadores disponíveis
-    const renderPlayers = () => {
-        const playersContainer = document.querySelector(".players-container");
-        playersContainer.innerHTML = ""; // Limpar os jogadores da tela
+  <div class="amigo" onclick="mostrar('erick')">
+    <h2>👤 Erick</h2>
+    <div id="erick" class="familiares">
+      <p><strong>Mãe:</strong> Renata</p>
+      <p><strong>Pai:</strong> (desconhecido 🤫)</p>
+    </div>
+  </div>
 
-        players.forEach(player => {
-            const playerCard = document.createElement("div");
-            playerCard.classList.add("player-card");
-            playerCard.innerHTML = `
-                <h3>${player.name}</h3>
-                <p>${player.position}</p>
-                <p>Preço: ${player.price} CC</p>
-                <button onclick="addPlayerToTeam(${player.id})">Adicionar</button>
-            `;
-            playersContainer.appendChild(playerCard);
-        });
-    };
+  <div class="amigo" onclick="mostrar('raphael')">
+    <h2>👤 Raphael</h2>
+    <div id="raphael" class="familiares">
+      <p><strong>Mãe:</strong> Marisa</p>
+    </div>
+  </div>
 
-    // Função para remover jogador do time
-    const removePlayerFromTeam = (playerId) => {
-        selectedPlayers = selectedPlayers.filter(player => player.id !== playerId);
-        renderTeam();
-        updateBudget();
-    };
-
-    // Função para renderizar o time
-    const renderTeam = () => {
-        const teamContainer = document.querySelector(".team-container");
-        teamContainer.innerHTML = ""; // Limpar o time da tela
-
-        selectedPlayers.forEach(player => {
-            const teamCard = document.createElement("div");
-            teamCard.classList.add("team-card");
-            teamCard.innerHTML = `
-                <h3>${player.name} (${player.position})</h3>
-                <p>Preço: ${player.price} CC</p>
-                <button onclick="removePlayerFromTeam(${player.id})">Remover</button>
-            `;
-            teamContainer.appendChild(teamCard);
-        });
-    };
-
-    // Inicializar
-    renderPlayers();
-    updateBudget();
-</script>
+  <script>
+    function mostrar(id) {
+      const box = document.getElementById(id);
+      box.style.display = box.style.display === 'block' ? 'none' : 'block';
+    }
+  </script>
 
 </body>
 </html>
