@@ -1,184 +1,286 @@
+
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Zoando os Amigos</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TavaskiBet - Login</title>
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #fceabb, #f8b500);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 20px;
-      color: #333;
-    }
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #FF4B2B, #FF416C); /* Gradiente de fundo */
+            color: white;
+            text-align: center;
+            padding: 0;
+        }
 
-    h1 {
-      color: #fff;
-      font-size: 32px;
-      margin-bottom: 30px;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-    }
+        /* Cabeçalho */
+        header {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px 0;
+            margin-bottom: 20px;
+        }
 
-    .amigo {
-      background: #fff;
-      border-radius: 15px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      margin: 15px 0;
-      padding: 20px;
-      width: 100%;
-      max-width: 400px;
-      text-align: center;
-      transition: transform 0.2s;
-      cursor: pointer;
-    }
+        header h1 {
+            font-size: 3em;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
 
-    .amigo:hover {
-      transform: scale(1.03);
-      background-color: #ffe58f;
-    }
+        header nav {
+            margin-top: 20px;
+        }
 
-    .amigo h2 {
-      margin: 0;
-      font-size: 22px;
-      color: #ff6600;
-    }
+        header nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2em;
+            text-transform: uppercase;
+        }
 
-    .familiares {
-      display: none;
-      margin-top: 15px;
-      text-align: left;
-      padding: 15px;
-      border-top: 1px solid #ddd;
-      color: #444;
-    }
+        header nav a:hover {
+            text-decoration: underline;
+        }
 
-    .familiares p {
-      margin: 8px 0;
-    }
-  </style>
+        /* Formulário de Login */
+        .login-container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 1em;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .login-container button {
+            width: 100%;
+            padding: 12px;
+            background-color: #FF416C;
+            border: none;
+            color: white;
+            font-size: 1.2em;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .login-container button:hover {
+            background-color: #FF4B2B;
+        }
+
+        .login-container h2 {
+            margin-bottom: 20px;
+        }
+
+        /* Seção de Jogos */
+        main {
+            margin: 20px;
+        }
+
+        .saldo {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+        }
+
+        .jogos {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .jogo-item {
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .jogo-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .jogo-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .jogo-item h3 {
+            font-size: 1.5em;
+            margin-top: 10px;
+            margin-bottom: 15px;
+        }
+
+        .jogo-item label {
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        .jogo-item input {
+            padding: 10px;
+            font-size: 1em;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-bottom: 15px;
+            width: 80%;
+            max-width: 250px;
+            text-align: center;
+        }
+
+        .jogo-item button {
+            background-color: #FF416C;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.2em;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .jogo-item button:hover {
+            background-color: #FF4B2B;
+        }
+
+        /* Multiplicador */
+        .jogo-item span {
+            display: block;
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            .jogo-item input {
+                width: 70%;
+            }
+
+            .jogo-item button {
+                font-size: 1em;
+            }
+        }
+    </style>
 </head>
 <body>
-
-  <h1>😎 Clique no nome do amigo pra ver os parentes secretos</h1>
-
-  <!-- Modelo de cartão de amigo -->
-  <div class="amigo" onclick="mostrar('benjamin')">
-    <h2>👤 Benjamin</h2>
-    <div id="benjamin" class="familiares">
-      <p><strong>Mãe:</strong> Ivonne</p>
-      <p><strong>Pai:</strong> Tsen</p>
-      <p><strong>Irmã:</strong> Emily</p>
+    <!-- Tela de Login -->
+    <div class="login-container">
+        <h2>Login TavaskiBet</h2>
+        <input type="text" id="username" placeholder="Usuário">
+        <input type="password" id="password" placeholder="Senha">
+        <button onclick="fazerLogin()">Entrar</button>
     </div>
-  </div>
 
-  <div class="amigo" onclick="mostrar('joao')">
-    <h2>👤 João</h2>
-    <div id="joao" class="familiares">
-      <p><strong>Mãe:</strong> Andreia</p>
-      <p><strong>Pai:</strong> Lucas</p>
-    </div>
-  </div>
+    <!-- Seção de Jogos (oculta até o login) -->
+    <main style="display:none;" id="main-content">
+        <section class="saldo">
+            <h3>Saldo Disponível: R$2500,00</h3>
+        </section>
 
-  <div class="amigo" onclick="mostrar('thiago')">
-    <h2>👤 Thiago</h2>
-    <div id="thiago" class="familiares">
-      <p><strong>Mãe:</strong> Josi</p>
-      <p><strong>Pai:</strong> Marcelão</p>
-      <p><strong>Prima:</strong> Maísa</p>
-      <p><strong>Vô:</strong> Vardão</p>
-      <p><strong>Tio:</strong> Douglas</p>
-    </div>
-  </div>
+        <section class="jogos">
+            <h2>Jogos Disponíveis</h2>
 
-  <div class="amigo" onclick="mostrar('botelho')">
-    <h2>👤 Botelho</h2>
-    <div id="botelho" class="familiares">
-      <p><strong>Mãe:</strong> Michelle</p>
-      <p><strong>Pai:</strong> Adriano</p>
-    </div>
-  </div>
+            <!-- Jogo Mines -->
+            <div class="jogo-item">
+                <img src="mines-icon.jpg" alt="Mines">
+                <h3>Mines</h3>
+                <label for="mines-bet">Valor da Aposta:</label>
+                <input type="number" id="mines-bet" placeholder="R$ 50,00" min="50" step="50">
+                <br>
+                <label for="mines-count">Número de Minas:</label>
+                <select id="mines-count">
+                    <option value="1">1 Mina</option>
+                    <option value="2">2 Minas</option>
+                    <option value="3">3 Minas</option>
+                    <option value="4">4 Minas</option>
+                    <option value="5">5 Minas</option>
+                    <option value="6">6 Minas</option>
+                    <option value="7">7 Minas</option>
+                    <option value="8">8 Minas</option>
+                </select>
+                <br>
+                <span>Multiplicador: <strong id="multiplicador-minas">2x - 16x</strong></span>
+                <br>
+                <button onclick="calcularMultiplicador()">Jogar Agora</button>
+            </div>
 
-  <div class="amigo" onclick="mostrar('pisin')">
-    <h2>👤 Pisin</h2>
-    <div id="pisin" class="familiares">
-      <p><strong>Mãe:</strong> Amanda</p>
-      <p><strong>Pai:</strong> Diego</p>
-      <p><strong>Vó:</strong> Rose</p>
-      <p><strong>Vô:</strong> Armindo</p>
-      <p><strong>Vó:</strong> Vera Lucia</p>
-      <p><strong>Irmãs:</strong> Annie e Izzie</p>
-    </div>
-  </div>
+            <!-- Jogo Aviator -->
+            <div class="jogo-item">
+                <img src="aviator-icon.jpg" alt="Aviator">
+                <h3>Aviator</h3>
+                <label for="aviator-bet">Valor da Aposta:</label>
+                <input type="number" id="aviator-bet" placeholder="R$ 50,00" min="50" step="50">
+                <br>
+                <span>Multiplicador: <strong id="multiplicador-aviator">1x - 10x</strong></span>
+                <br>
+                <button onclick="calcularMultiplicadorAviator()">Jogar Agora</button>
+            </div>
 
-  <div class="amigo" onclick="mostrar('tavares')">
-    <h2>👤 Tavares</h2>
-    <div id="tavares" class="familiares">
-      <p><strong>Pai:</strong> César</p>
-      <p><strong>Mãe:</strong> Liliane</p>
-      <p><strong>Vô:</strong> José</p>
-      <p><strong>Irmãos:</strong> Enzo e Pietro</p>
-      <p><strong>Tia:</strong> Fernanda</p>
-      <p><strong>Tia:</strong> Cyene</p>
-    </div>
-  </div>
+            <!-- Outros jogos aqui -->
+        </section>
+    </main>
 
-  <div class="amigo" onclick="mostrar('vini')">
-    <h2>👤 Vini</h2>
-    <div id="vini" class="familiares">
-      <p><strong>Pai:</strong> Giuliano</p>
-      <p><strong>Mãe:</strong> Andréia</p>
-      <p><strong>Irmã:</strong> Giulia</p>
-    </div>
-  </div>
+    <footer>
+        <a href="#">Política de Privacidade</a>
+        <a href="#">Termos de Serviço</a>
+        <a href="#">Suporte ao Cliente</a>
+        <a href="#">Contatos</a>
+    </footer>
 
-  <div class="amigo" onclick="mostrar('enzo')">
-    <h2>👤 Enzo</h2>
-    <div id="enzo" class="familiares">
-      <p><strong>Mãe:</strong> Liliane</p>
-      <p><strong>Vó:</strong> Dineusa</p>
-    </div>
-  </div>
+    <script>
+        // Função para simular o login
+        function fazerLogin() {
+            var usuario = document.getElementById('username').value;
+            var senha = document.getElementById('password').value;
 
-  <div class="amigo" onclick="mostrar('murilo')">
-    <h2>👤 Murilo</h2>
-    <div id="murilo" class="familiares">
-      <p><strong>Mãe:</strong> Viviane</p>
-      <p><strong>Pai:</strong> Gilmar</p>
-    </div>
-  </div>
+            if (usuario === "" || senha === "") {
+                alert("Preencha todos os campos!");
+                return;
+            }
 
-  <div class="amigo" onclick="mostrar('erick')">
-    <h2>👤 Erick</h2>
-    <div id="erick" class="familiares">
-      <p><strong>Mãe:</strong> Renata</p>
-      <p><strong>Pai:</strong> (desconhecido 🤫)</p>
-    </div>
-  </div>
-
-  <div class="amigo" onclick="mostrar('raphael')">
-    <h2>👤 Raphael</h2>
-    <div id="raphael" class="familiares">
-      <p><strong>Mãe:</strong> Marisa</p>
-    </div>
-  </div>
-
-  <script>
-    function mostrar(id) {
-      const box = document.getElementById(id);
-      box.style.display = box.style.display === 'block' ? 'none' : 'block';
-    }
-  </script>
-
-</body>
-</html>
+            // Aqui, normalmente, você validaria o login com o servidor.
+            alert("Login bem-sucedido!");
+            // Após login bem-sucedido, mostra a área de jogos
+            document.querySelector('.login-container').style.display = 'none';
